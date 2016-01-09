@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="MorseService"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:head="http://schemas.org.haydar/MorseService/header"
+	xmlns:reqEn="http://schemas.org.haydar/MorseService/MorseServiceEncodeRequest"
+	xmlns:reqDe="http://schemas.org.haydar/MorseService/MorseServiceDecodeRequest"
+	xmlns:rsp="http://schemas.org.haydar/MorseService/MorseServiceResponse"
+	xmlns:flt="http://schemas.org.haydar/MorseService/fault" xmlns:srv="http://schemas.org.haydar/MorseService"
+	targetNamespace="http://schemas.org.haydar/MorseService">
+
+	<wsdl:documentation>This service will decode or encode morse code
+	</wsdl:documentation>
+
+	<!-- What data types will be sent? -->
+
+	<wsdl:types>
+		<xsd:schema>
+			<xsd:import namespace="http://schemas.org.haydar/MorseService/header"
+				schemaLocation="MorseServiceHeader.xsd" />
+			<xsd:import
+				namespace="http://schemas.org.haydar/MorseService/MorseServiceDecodeRequest"
+				schemaLocation="MorseServiceDecodeRequest.xsd" />
+			<xsd:import
+				namespace="http://schemas.org.haydar/MorseService/MorseServiceEncodeRequest"
+				schemaLocation="MorseServiceEncodeRequest.xsd" />
+			<xsd:import
+				namespace="http://schemas.org.haydar/MorseService/MorseServiceResponse"
+				schemaLocation="MorseServiceResponse.xsd" />
+			<xsd:import namespace="http://schemas.org.haydar/MorseService/fault"
+				schemaLocation="MorseServiceFault.xsd" />
+		</xsd:schema>
+	</wsdl:types>
+
+
+	<wsdl:message name="MorseServiceDecodeRequestMessage">
+		<wsdl:part name="MorseServiceHeader" element="head:MorseServiceHeader" />
+		<wsdl:part name="MorseServiceDecodeRequest" element="reqDe:MorseServiceDecodeRequest" />
+	</wsdl:message>
+	<wsdl:message name="MorseServiceEncodeRequestMessage">
+		<wsdl:part name="MorseServiceHeader" element="head:MorseServiceHeader" />
+		<wsdl:part name="MorseServiceEncodeRequest" element="reqEn:MorseServiceEncodeRequest" />
+	</wsdl:message>
+	<wsdl:message name="MorseServiceResponseMessage">
+		<wsdl:part name="MorseServiceResponse" element="rsp:MorseServiceResponse" />
+	</wsdl:message>
+	<wsdl:message name="MorseServiceFaultMessage">
+		<wsdl:part name="MorseServiceFault" element="flt:MorseServiceFault" />
+	</wsdl:message>
+
+	<!-- Supported functions -->
+	<wsdl:portType name="WS-Interface">
+		<wsdl:operation name="encodeMorseCode">
+			<wsdl:input message="srv:MorseServiceEncodeRequestMessage" />
+			<wsdl:output message="srv:MorseServiceResponseMessage" />
+			<wsdl:fault name="MorseServiceFault" message="srv:MorseServiceFaultMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="decodeMorseCode">
+			<wsdl:input message="srv:MorseServiceDecodeRequestMessage" />
+			<wsdl:output message="srv:MorseServiceResponseMessage" />
+			<wsdl:fault name="MorseServiceFault" message="srv:MorseServiceFaultMessage" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+
+
+	<wsdl:binding name="WS-Binding" type="srv:WS-Interface">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="encodeMorseCode">
+			<soap:operation soapAction="encodeMorseCode" style="document" />
+			<wsdl:input>
+				<soap:header use="literal" part="MorseServiceHeader"
+					message="srv:MorseServiceEncodeRequestMessage" />
+				<soap:body parts="MorseServiceEncodeRequest" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="MorseServiceFault">
+				<soap:fault name="MorseServiceFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="decodeMorseCode">
+			<soap:operation soapAction="decodeMorseCode" style="document" />
+			<wsdl:input>
+				<soap:header use="literal" part="MorseServiceHeader"
+					message="srv:MorseServiceDecodeRequestMessage" />
+				<soap:body parts="MorseServiceDecodeRequest" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="MorseServiceFault">
+				<soap:fault name="MorseServiceFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="MorseService">
+		<wsdl:port name="WS-Port" binding="srv:WS-Binding">
+			<soap:address location="http://localhost:8080/ws-producer/ws-producer" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

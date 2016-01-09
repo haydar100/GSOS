@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:MorseServiceResponse xmlns:tns="http://schemas.org.haydar/MorseService/MorseServiceResponse" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.org.haydar/MorseService/MorseServiceResponse MorseServiceResponse.xsd ">
+  <tns:morseCodeResul>tns:morseCodeResult</tns:morseCodeResul>
+</tns:MorseServiceResponse>

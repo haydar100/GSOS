@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:reqDe="http://schemas.org.haydar/MorseService/MorseServiceDecodeRequest"
+	targetNamespace="http://schemas.org.haydar/MorseService/MorseServiceDecodeRequest"
+	elementFormDefault="qualified">
+
+	<!-- Kandidaat root element -->
+	<element name="MorseServiceDecodeRequest">
+		<!-- anoniem type -->
+		<complexType>
+			<sequence>
+				<element name="separator" type="string"/>
+				<element name="morseCodeSequence" type="string"/>
+			</sequence>
+		</complexType>
+	</element>
+
+</schema>

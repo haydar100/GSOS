@@ -1,0 +1,10 @@
+nl\hu\fnt\gsos\wsinterface\WSInterface.class
+nl\hu\fnt\gsos\wsinterface\MorseServiceFault.class
+nl\hu\fnt\gsos\wsinterface\MorseServiceDecodeRequest.class
+nl\hu\fnt\gsos\wsinterface\MorseServiceFaultMessage.class
+nl\hu\fnt\gsos\wsinterface\MorseServiceHeader.class
+nl\hu\fnt\gsos\wsinterface\ObjectFactory.class
+nl\hu\fnt\gsos\wsinterface\MorseServiceResponse.class
+nl\hu\fnt\gsos\wsinterface\MorseService.class
+nl\hu\fnt\gsos\wsinterface\package-info.class
+nl\hu\fnt\gsos\wsinterface\MorseServiceEncodeRequest.class

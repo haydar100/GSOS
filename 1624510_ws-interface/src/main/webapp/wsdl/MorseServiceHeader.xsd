@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+		xmlns:head="http://schemas.org.haydar/MorseService/header" targetNamespace="http://schemas.org.haydar/MorseService/header">
+		<element name="MorseServiceHeader">
+			<complexType>
+				<sequence>
+					<element name="bedrijfsNaam"  minOccurs="1" maxOccurs="1" type="string" />
+					<element name="postCode"  minOccurs="1" maxOccurs="1">
+						<simpleType>
+							<restriction base="string">
+								<pattern value="[1‐9][0‐9]{3}[A‐Z]{2}" />
+							</restriction>
+						</simpleType>
+					</element>
+					<element name="huisNummer"  minOccurs="1" maxOccurs="1">
+						<simpleType>
+							<restriction base="string">
+								<pattern value="[1‐9][0‐9]{0,4}" />
+							</restriction>
+						</simpleType>
+					</element>
+				</sequence>
+			</complexType>
+		</element>
+</schema>
